@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="contenido">
+		<p:messages autoUpdate="true" showDetail="false" />
+		<center>
+			<h:form id="form">
+                           
+
+                            <p:panel rendered="#{!reservacionController.verPanel}"
+					style="width:500px;" header="RESERVACIONES">
+					<p:dataTable id="tabla"
+                                                     value="#{reservacionController.reservaciones}" var="reser">
+						<p:column headerText="Cancha">
+                                                    <h:outputText value="#{reser.peliculaHorario.pelicula.nombre}" />
+						</p:column>
+						<p:column headerText="Horario">
+							<h:outputText value="#{reser.peliculaHorario.horario.horas}" />
+						</p:column>
+						<p:column headerText="Fecha">
+							<h:outputText value="#{reser.fecha}" />
+						</p:column>
+						<p:column headerText="Valor">
+							<h:outputText value="#{reser.valor}" />
+						</p:column>
+						<p:column headerText="Acción">
+							<p:commandButton value="Eliminar" update=":form"
+                                                                         action="#{reservacionController.eliminar(reser)}">
+								<f:setPropertyActionListener
+                                                                    target="#{reservacionController.reservacion}" value="#{reser}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+		</center>
+	</ui:define>
+</ui:composition>
+</html>

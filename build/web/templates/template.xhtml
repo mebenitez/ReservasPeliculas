@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="tituloPagina">Nombre de la Pagina</ui:insert></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<h:outputStylesheet library="css" name="foundation.css"></h:outputStylesheet>
+	<!-- 	<h:outputStylesheet library="css" name="template.css"></h:outputStylesheet> -->
+	<h:outputScript library="js" name="jquery.js"></h:outputScript>
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo"></div>
+		<div id="menu_principal">
+			<ui:insert name="menuPrincipal">
+
+			</ui:insert>
+		</div>
+		<div id="credenciales">
+			<ui:insert name="credencialesUI">
+				<h:outputText style="float:right;margin-right: 10px;font-size:12px;"
+					value="Usuario: #{loginController.usuario.username}" />
+			</ui:insert>
+			<br />
+			<ui:insert name="logArea">
+                            
+				<h:form>
+                                    <p:commandButton value="cerrar sesion" style="float:right;"
+                                                       actionListener="#{loginController.salir()}" />
+					
+				</h:form>
+			</ui:insert>
+		</div>
+	</div>
+	<div id="pagina">
+		<div id="contenido">
+			<ui:insert name="contenido">Contenido de la pagina</ui:insert>
+		</div>
+	</div>
+
+</h:body>
+</html>
+
